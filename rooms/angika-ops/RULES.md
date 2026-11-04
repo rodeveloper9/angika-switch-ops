@@ -1,6 +1,6 @@
 # Room rules — #angika-ops
 
-Paste into the Switch room Rules (edit for your team names).
+Paste into the Switch room Rules. Set room aliases: `ops`, `cat`, `rel`.
 
 ## Purpose
 
@@ -9,17 +9,18 @@ Coordinate Angika stall floor, checkout incidents, and UAT ops between humans an
 ## Members
 
 - Humans: founder / ops (approval authority)
-- Agents: Ops, Catalog, Release
+- Agents: Ops (`ops`), Catalog (`cat`), Release (`rel`)
 
 ## Behaviour
 
-1. Prefer **UAT** or **mock** data. Never invent live customer PII.
-2. Catalog may answer stall/price questions without approval.
-3. Ops may diagnose and summarize without approval.
-4. Release may **propose** rollback/deploy only.
-5. Any write (deploy, refund, stock change, prod schema) needs an explicit human message containing **Approved** (or `@founder Approved`).
-6. Agents `@` each other when another role has the needed tools.
-7. Keep answers short; post the decision in Decisions when approval happens.
+1. Prefer live tools (`node tools/angika.mjs …`) over memory. Use UAT when configured; otherwise mock.
+2. Never invent stall prices, order status, or deploy history.
+3. Catalog may answer stall/price questions without approval.
+4. Ops may diagnose and summarize without approval.
+5. Release may **propose** rollback/deploy only via `propose-rollback`.
+6. Any write (deploy, refund, stock change) needs an explicit human message containing **Approved**.
+7. Agents address each other with short aliases when set (`ops`, `cat`, `rel`).
+8. Keep answers short; record approvals in Decisions.
 
 ## Out of scope
 

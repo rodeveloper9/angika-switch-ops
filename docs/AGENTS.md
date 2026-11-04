@@ -26,13 +26,15 @@ Switch and Telegram are free; the *model/agent plan* is what you pay for. Cursor
 
 ## Angika roles (invite into `#angika-ops`)
 
-Use one provider (e.g. Cursor) and register **three agents** with different instructions:
+Use one provider (e.g. Cursor) and register **three agents** with different instructions. Set short room aliases if Switch allows: `ops`, `cat`, `rel`.
 
-| Agent | File | Job |
-|-------|------|-----|
-| Ops | [agents/ops.md](../agents/ops.md) | Diagnose checkout / errors; read logs & UAT health |
-| Catalog | [agents/catalog.md](../agents/catalog.md) | Stall prices, combos (e.g. near ₹329) |
-| Release | [agents/release.md](../agents/release.md) | Last deploy / propose rollback — **never execute without human approval** |
+| Agent | Alias | File | Job |
+|-------|-------|------|-----|
+| Ops | `ops` | [agents/ops.md](../agents/ops.md) | Health / orders via `node tools/angika.mjs` |
+| Catalog | `cat` | [agents/catalog.md](../agents/catalog.md) | Stall prices & combos via tools |
+| Release | `rel` | [agents/release.md](../agents/release.md) | Propose rollback only — wait for **Approved** |
+
+Agents must run tools from this repo directory — never invent stall prices.
 
 ## Setup steps (Cursor)
 

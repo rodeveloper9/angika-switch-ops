@@ -1,19 +1,35 @@
 # Angika tools
 
-Thin adapters for Switch agents. Use **mock** when UAT is unreachable.
+CLI that Switch agents run from the repo working directory.
+
+```bash
+node tools/angika.mjs health
+node tools/angika.mjs stall-list
+node tools/angika.mjs stall-combo --target 329
+node tools/angika.mjs propose-rollback
+node tools/angika.mjs order-status --q 9876543210
+```
 
 ## Modes
 
 | `ANGIKA_TOOLS_MODE` | Behaviour |
 |---------------------|-----------|
-| `mock` | Read `tools/mock/*.json` |
-| `uat` | HTTP GET against `ANGIKA_API_BASE_URL` (read-only) |
+| `mock` | Reads `tools/mock/*.json` (no network, no token) |
+| `uat` | Live UAT. Public `health` needs no token. Stall/orders need `ANGIKA_API_TOKEN` |
 
-## Suggested tools for agents
+## UAT token
 
-1. `list_stall_prices` — name, weight, stallPrice, stock  
-2. `suggest_stall_combo` — target total (e.g. 329) → closest packs  
-3. `uat_health` — simple ping / products list head  
-4. `propose_rollback` — returns a proposal object; execute only after approval  
+Stall prices are **admin-only** (shopper `/api/products` hides them).
 
-Wire these via MCP or shell helpers your Cursor/OpenCode agent can call. Keep secrets in `.env` only.
+1. Sign in to https://uat.angikafoods.com/admin  
+2. DevTools → Application → Local Storage → copy the Cognito / auth **access token** (or whatever the admin app stores as Bearer)  
+3. Put it in `.env` as `ANGIKA_API_TOKEN=...`  
+4. Set `ANGIKA_TOOLS_MODE=uat`
+
+Never commit `.env`.
+
+## Agent contract
+
+- Catalog: always prefer `stall-list` / `stall-combo` over guessing.  
+- Ops: `health`, `order-status`.  
+- Release: `propose-rollback` only; execute nothing until the room has **Approved**.
