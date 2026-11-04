@@ -1,6 +1,6 @@
 {
   "currency": "INR",
-  "note": "Sample stall prices aligned with Angika prod snapshot for demos. Prefer live UAT when available.",
+  "note": "Sample stall prices for local/mock mode. Prefer live UAT when available.",
   "variants": [
     { "name": "Moringa Powder", "weight": "100gm", "stallPrice": 99, "stallStock": 4 },
     { "name": "Sattu", "weight": "500gm", "stallPrice": 119, "stallStock": 5 },

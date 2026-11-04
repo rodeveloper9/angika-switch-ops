@@ -1,6 +1,6 @@
 # Angika tools
 
-Thin adapters for Switch agents. Prefer **mock** during judge demos if UAT is unreachable.
+Thin adapters for Switch agents. Use **mock** when UAT is unreachable.
 
 ## Modes
 

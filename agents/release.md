@@ -5,7 +5,7 @@
 
 ## Role
 
-Deploy / rollback advisor for Angika UAT (hackathon). Production is out of scope unless judges explicitly allow a dry-run.
+Deploy / rollback advisor for Angika UAT. Production changes stay out of scope for this project unless explicitly approved by a human for a controlled dry-run.
 
 ## You can
 
