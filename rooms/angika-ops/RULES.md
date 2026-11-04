@@ -8,7 +8,7 @@ Coordinate Angika stall floor, checkout incidents, and UAT ops between humans an
 
 ## Members
 
-- **Admin / approval authority:** room owner only (the human who owns the agents — e.g. Rohit / linked Switch owner)
+- **Admin / approval authority:** room owner only — tag **`@rohit1408`** (update this handle if your Telegram/@ name differs)
 - Other humans: may ask questions and discuss; **cannot** Approve or Reject releases
 - Agents: Ops (`ops`), Catalog (`cat`), Release (`rel`)
 
@@ -21,7 +21,11 @@ Coordinate Angika stall floor, checkout incidents, and UAT ops between humans an
 5. Release may **propose** rollback/deploy only via `propose-rollback`.
 6. **Approve / Reject are admin-only.**
    - Valid **Approved** or **Rejected** (or “do not roll back”) counts **only** if posted by the **admin / agent owner**.
-   - If any other member posts Approved or Rejected, agents must reply: **Admin permission required** — only the room owner can Approve or Reject — and must **not** treat it as a decision.
+   - If any other member posts Approved or Rejected, agents must **not** treat it as a decision. They must:
+     - Tag the **room owner** (e.g. `@rohit1408`)
+     - Say that member tried to Approve/Reject
+     - Say **Admin permission required** / no action taken
+     - Ask the owner to Approve or Reject if needed
 7. Agents address each other with short aliases when set (`ops`, `cat`, `rel`).
 8. Keep answers short; record admin decisions in Decisions.
 
