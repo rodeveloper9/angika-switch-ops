@@ -3,118 +3,521 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Angika Ops — same brain as Telegram</title>
+    <title>Angika Ops — stall floor + Switch</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Source+Sans+3:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
       :root {
-        color-scheme: light dark;
-        --bg: #0f1410;
-        --card: #1a221c;
-        --text: #e8f0ea;
-        --muted: #9aaf9f;
-        --accent: #c4a35a;
-        --line: #2a362e;
+        --bg: #142018;
+        --bg-2: #1c2a20;
+        --ink: #f3efe4;
+        --muted: #b7c4b4;
+        --gold: #d4a84b;
+        --gold-dim: #a67c2a;
+        --line: #314336;
+        --ok: #7dba6e;
+        --warn: #e0a45a;
+        --danger: #d67a6a;
+        --radius: 14px;
+        --font-display: "Fraunces", Georgia, serif;
+        --font-body: "Source Sans 3", system-ui, sans-serif;
       }
       * {
         box-sizing: border-box;
       }
       body {
         margin: 0;
-        font-family: "Segoe UI", system-ui, sans-serif;
-        background: radial-gradient(1200px 600px at 10% -10%, #243028, var(--bg));
-        color: var(--text);
-        line-height: 1.45;
+        font-family: var(--font-body);
+        color: var(--ink);
+        background:
+          radial-gradient(900px 480px at 85% -10%, #2a3d2e 0%, transparent 55%),
+          radial-gradient(700px 420px at -10% 20%, #243528 0%, transparent 50%),
+          linear-gradient(180deg, #101a13 0%, var(--bg) 40%, #0e1611 100%);
+        line-height: 1.5;
+        min-height: 100vh;
+      }
+      a {
+        color: var(--gold);
       }
       main {
-        max-width: 720px;
+        max-width: 880px;
         margin: 0 auto;
-        padding: 48px 20px 80px;
+        padding: 40px 20px 96px;
       }
-      h1 {
-        font-size: 1.75rem;
+      .brand {
+        font-family: var(--font-display);
+        font-size: clamp(2.4rem, 6vw, 3.4rem);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin: 0 0 10px;
+        line-height: 1.05;
+      }
+      .brand span {
+        color: var(--gold);
+      }
+      .lead {
+        margin: 0 0 28px;
+        max-width: 38rem;
+        color: var(--muted);
+        font-size: 1.12rem;
+      }
+      .pill-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 0 0 36px;
+      }
+      .pill {
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.03);
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+      .pill strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      section {
+        margin: 0 0 40px;
+      }
+      h2 {
+        font-family: var(--font-display);
+        font-size: 1.45rem;
         font-weight: 600;
         margin: 0 0 8px;
       }
-      p.lead {
+      .sub {
+        margin: 0 0 16px;
         color: var(--muted);
-        margin: 0 0 28px;
+        max-width: 40rem;
+      }
+      .agents {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+      @media (max-width: 720px) {
+        .agents {
+          grid-template-columns: 1fr;
+        }
+      }
+      .agent {
+        border-top: 3px solid var(--gold);
+        background: linear-gradient(180deg, var(--bg-2), transparent);
+        padding: 16px 14px 14px;
+      }
+      .agent h3 {
+        margin: 0 0 4px;
         font-size: 1.05rem;
       }
-      .card {
-        background: var(--card);
-        border: 1px solid var(--line);
-        border-radius: 12px;
-        padding: 18px 18px 16px;
-        margin-bottom: 14px;
+      .agent .alias {
+        color: var(--gold);
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 0.8rem;
       }
-      .card h2 {
+      .agent p {
+        margin: 10px 0 0;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+      .compare {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      @media (max-width: 640px) {
+        .compare {
+          grid-template-columns: 1fr;
+        }
+      }
+      .compare article {
+        padding: 16px;
+        border: 1px solid var(--line);
+        background: rgba(0, 0, 0, 0.2);
+      }
+      .compare h3 {
         margin: 0 0 8px;
         font-size: 1rem;
-        font-weight: 600;
       }
-      .card p,
-      .card li {
+      .compare ul {
+        margin: 0;
+        padding-left: 1.1rem;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+      .tool {
+        border: 1px solid var(--line);
+        background: rgba(0, 0, 0, 0.25);
+        padding: 18px;
+        border-radius: var(--radius);
+      }
+      .tool-bar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: end;
+        margin-bottom: 14px;
+      }
+      label {
+        display: grid;
+        gap: 4px;
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+      input[type="number"] {
+        width: 120px;
+        padding: 10px 12px;
+        border-radius: 8px;
+        border: 1px solid var(--line);
+        background: #0c120e;
+        color: var(--ink);
+        font-size: 1rem;
+      }
+      button {
+        font-family: var(--font-body);
+        font-weight: 700;
+        border: 0;
+        border-radius: 8px;
+        padding: 11px 16px;
+        background: var(--gold);
+        color: #1a1408;
+        cursor: pointer;
+      }
+      button:hover {
+        filter: brightness(1.05);
+      }
+      .result {
+        min-height: 3rem;
         color: var(--muted);
         font-size: 0.95rem;
       }
-      code {
-        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-        font-size: 0.85em;
-        color: var(--accent);
+      .pack {
+        border-left: 3px solid var(--ok);
+        padding: 10px 0 10px 12px;
+        margin: 0 0 10px;
       }
-      .flow {
+      .pack strong {
+        color: var(--ink);
+      }
+      .pack .meta {
+        font-size: 0.85rem;
+      }
+      .cmds {
         display: grid;
-        gap: 8px;
-      }
-      .step {
-        display: flex;
         gap: 10px;
-        align-items: flex-start;
       }
-      .n {
-        flex: 0 0 1.5rem;
-        height: 1.5rem;
-        border-radius: 999px;
-        background: var(--accent);
-        color: #1a1408;
-        font-size: 0.8rem;
-        font-weight: 700;
+      .cmd {
         display: grid;
-        place-items: center;
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+        align-items: center;
+        padding: 12px 12px;
+        border: 1px solid var(--line);
+        background: #0c120e;
+        border-radius: 8px;
+      }
+      .cmd code {
+        font-size: 0.86rem;
+        color: var(--gold);
+        word-break: break-word;
+      }
+      .cmd button {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+        background: transparent;
+        color: var(--muted);
+        border: 1px solid var(--line);
+      }
+      .timeline {
+        display: grid;
+        gap: 0;
+      }
+      .tl {
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        gap: 12px;
+      }
+      .tl .dot {
+        width: 12px;
+        height: 12px;
+        margin: 6px auto 0;
+        border-radius: 50%;
+        background: var(--gold);
+        box-shadow: 0 0 0 4px rgba(212, 168, 75, 0.15);
+      }
+      .tl + .tl .rail {
+        position: relative;
+      }
+      .tl .rail::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: -100%;
+        bottom: 50%;
+        width: 2px;
+        transform: translateX(-50%);
+        background: var(--line);
+      }
+      .tl p {
+        margin: 0 0 16px;
+        color: var(--muted);
+      }
+      .tl b {
+        color: var(--ink);
+      }
+      footer {
+        margin-top: 48px;
+        padding-top: 20px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+      .note {
+        font-size: 0.85rem;
+        color: var(--muted);
+        margin-top: 8px;
       }
     </style>
   </head>
   <body>
     <main>
-      <h1>Angika Ops</h1>
-      <p class="lead">
-        Website entry for the same collaboration brain as Telegram. <strong>Switch</strong> is required: it turns the chat into a room, starts Cursor agents, and keeps Rules and admin Approve/Reject in one place.
+      <p class="pill-row" style="margin-bottom: 18px">
+        <span class="pill"><strong>Switch</strong> room bridge</span>
+        <span class="pill"><strong>Telegram</strong> #angika_ops</span>
+        <span class="pill"><strong>Cursor</strong> agents</span>
       </p>
 
-      <section class="card">
-        <h2>How work flows</h2>
-        <div class="flow">
-          <div class="step"><span class="n">1</span><div>Ask in Telegram <code>#angika-ops</code> (or invite this surface later)</div></div>
-          <div class="step"><span class="n">2</span><div>Switch starts Catalog / Ops / Release (Cursor)</div></div>
-          <div class="step"><span class="n">3</span><div>Tools hit Angika UAT (<code>node tools/angika.mjs …</code>)</div></div>
-          <div class="step"><span class="n">4</span><div>Writes wait for human <code>Approved</code></div></div>
+      <h1 class="brand">Angika <span>Ops</span></h1>
+      <p class="lead">
+        Stall-floor and UAT incident teammates in one Telegram room. Switch puts Catalog, Ops, and
+        Release beside your staff — with live (or mock) Angika data and admin-only Approve / Reject.
+      </p>
+
+      <div class="pill-row">
+        <span class="pill">Stall combos · ₹ targets</span>
+        <span class="pill">UAT health &amp; orders</span>
+        <span class="pill">Rollback proposals</span>
+        <span class="pill">Admin gate</span>
+      </div>
+
+      <section>
+        <h2>Your three agents</h2>
+        <p class="sub">Same people you invite in Switch. Short names help on Telegram (no @ autocomplete for agents).</p>
+        <div class="agents">
+          <article class="agent">
+            <div class="alias">ops · ops.rohit</div>
+            <h3>Ops</h3>
+            <p>Checks UAT health and order status. Hands off to Release when a rollback may be needed.</p>
+          </article>
+          <article class="agent">
+            <div class="alias">cat · catalog.rohit</div>
+            <h3>Catalog</h3>
+            <p>Reads stall prices and builds packs near a ₹ target (e.g. customer wants ~329).</p>
+          </article>
+          <article class="agent">
+            <div class="alias">rel · release.rohit</div>
+            <h3>Release</h3>
+            <p>Proposes UAT rollback only. Non-admin Approve/Reject → tags owner. Only owner decides.</p>
+          </article>
         </div>
       </section>
 
-      <section class="card">
-        <h2>Try these asks in Telegram</h2>
-        <ul>
-          <li><code>cat What stall pack is closest to 329?</code></li>
-          <li><code>ops Check UAT health with the angika tool.</code></li>
-          <li><code>ops … then ask release for a rollback plan</code> → human posts <code>Approved</code></li>
-        </ul>
+      <section>
+        <h2>Try a stall combo (same logic as the agent tool)</h2>
+        <p class="sub">
+          Uses the repo mock catalogue in-browser. In Telegram, Catalog runs
+          <code>node tools/angika.mjs stall-combo</code> against mock or live UAT.
+        </p>
+        <div class="tool">
+          <div class="tool-bar">
+            <label>
+              Target ₹
+              <input id="target" type="number" min="50" step="1" value="329" />
+            </label>
+            <button type="button" id="find">Find closest packs</button>
+          </div>
+          <div class="result" id="out">Pick a target and run Find — e.g. 329.</div>
+          <p class="note">Exact ₹329 is often impossible; agents explain the closest pack (often ₹328 honey).</p>
+        </div>
       </section>
 
-      <section class="card">
-        <h2>Why this matters</h2>
-        <p>
-          Stall pricing, incidents, and approvals stay in one room with shared history. This page is the future website/admin adapter — same brain, new skin.
-        </p>
+      <section>
+        <h2>Copy into Telegram</h2>
+        <p class="sub">Paste these into #angika_ops after agents are invited.</p>
+        <div class="cmds">
+          <div class="cmd">
+            <code>catalog.rohit What stall pack is closest to 329? Use the angika tool.</code>
+            <button type="button" data-copy>Copy</button>
+          </div>
+          <div class="cmd">
+            <code>ops.rohit Check health with the angika tool, then ask release.rohit for a UAT rollback proposal.</code>
+            <button type="button" data-copy>Copy</button>
+          </div>
+          <div class="cmd">
+            <code>Approved</code>
+            <button type="button" data-copy>Copy</button>
+          </div>
+          <div class="cmd">
+            <code>Rejected — do not roll back</code>
+            <button type="button" data-copy>Copy</button>
+          </div>
+        </div>
       </section>
+
+      <section>
+        <h2>Incident flow (what good looks like)</h2>
+        <p class="sub">Matches the Switch multi-human / multi-agent room pattern.</p>
+        <div class="timeline">
+          <div class="tl">
+            <div class="rail"><div class="dot"></div></div>
+            <p><b>You → Ops</b> — “Checkout failing on UAT, look please.”</p>
+          </div>
+          <div class="tl">
+            <div class="rail"><div class="dot"></div></div>
+            <p><b>Ops → tools</b> — runs health / order-status, summarizes.</p>
+          </div>
+          <div class="tl">
+            <div class="rail"><div class="dot"></div></div>
+            <p><b>Ops → Release</b> — asks for a UAT rollback proposal.</p>
+          </div>
+          <div class="tl">
+            <div class="rail"><div class="dot"></div></div>
+            <p><b>Release</b> — proposal only; waits for admin.</p>
+          </div>
+          <div class="tl">
+            <div class="rail"><div class="dot"></div></div>
+            <p><b>Teammate says Rejected</b> — agent tags owner: Admin permission required.</p>
+          </div>
+          <div class="tl">
+            <div class="rail"><div class="dot"></div></div>
+            <p><b>Owner: Approved / Rejected</b> — only this counts as the decision.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Why Switch is mandatory</h2>
+        <div class="compare">
+          <article>
+            <h3>With Switch</h3>
+            <ul>
+              <li>Telegram group becomes a shared room with Rules</li>
+              <li>Cursor agents join as named teammates</li>
+              <li>Handoffs + admin trust in one thread</li>
+              <li>History of who Approved stays in the room</li>
+            </ul>
+          </article>
+          <article>
+            <h3>Without Switch</h3>
+            <ul>
+              <li>No room bridge into Telegram</li>
+              <li>Agents stay stuck in a local IDE</li>
+              <li>No shared Rules / who-can-talk controls</li>
+              <li>This product design does not work</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <footer>
+        Repo tools: <code>./scripts/smoke.sh</code> ·
+        <a href="https://github.com/organic-tech/angika-switch-ops">organic-tech/angika-switch-ops</a>
+        · This page is the future website entry; Telegram + Switch are the live surface today.
+      </footer>
     </main>
+
+    <script>
+      const VARIANTS = [
+        { name: "Moringa Powder", weight: "100gm", stallPrice: 99, stallStock: 4 },
+        { name: "Sattu", weight: "500gm", stallPrice: 119, stallStock: 5 },
+        { name: "Katarni Chuda / Poha", weight: "500gm", stallPrice: 125, stallStock: 4 },
+        { name: "Multiflora Honey", weight: "250gm", stallPrice: 149, stallStock: 8 },
+        { name: "Ajwain Honey", weight: "250gm", stallPrice: 179, stallStock: 8 },
+        { name: "Tulsi Honey", weight: "250gm", stallPrice: 179, stallStock: 0 },
+        { name: "Katarni Chuda / Poha", weight: "1kg", stallPrice: 199, stallStock: 10 },
+        { name: "Mango Pickle", weight: "250gm", stallPrice: 199, stallStock: 6 },
+        { name: "Moringa Powder", weight: "250gm", stallPrice: 199, stallStock: 10 },
+        { name: "OL | Suran | Jimikand Pickle", weight: "250gm", stallPrice: 199, stallStock: 6 },
+        { name: "Sattu", weight: "1kg", stallPrice: 219, stallStock: 10 },
+        { name: "Buffalo Ghee", weight: "250ml", stallPrice: 249, stallStock: 10 },
+        { name: "Multiflora Honey", weight: "500gm", stallPrice: 279, stallStock: 10 },
+        { name: "Cow Ghee", weight: "250ml", stallPrice: 299, stallStock: 9 },
+      ];
+
+      function findCombos(target) {
+        const near = [];
+        const n = VARIANTS.length;
+        for (let i = 0; i < n; i++) {
+          const a = VARIANTS[i];
+          near.push({ total: a.stallPrice, diff: Math.abs(a.stallPrice - target), items: [a] });
+          for (let j = i + 1; j < n; j++) {
+            const b = VARIANTS[j];
+            const total = a.stallPrice + b.stallPrice;
+            near.push({ total, diff: Math.abs(total - target), items: [a, b] });
+          }
+        }
+        near.sort((x, y) => x.diff - y.diff || x.items.length - y.items.length);
+        const seen = new Set();
+        const out = [];
+        for (const p of near) {
+          const key = p.items.map((it) => it.name + it.weight).join("|") + p.total;
+          if (seen.has(key)) continue;
+          seen.add(key);
+          out.push(p);
+          if (out.length >= 3) break;
+        }
+        return out;
+      }
+
+      function render() {
+        const target = Number(document.getElementById("target").value);
+        const el = document.getElementById("out");
+        if (!Number.isFinite(target) || target <= 0) {
+          el.textContent = "Enter a valid ₹ target.";
+          return;
+        }
+        const packs = findCombos(target);
+        el.innerHTML = packs
+          .map((p) => {
+            const lines = p.items
+              .map(
+                (it) =>
+                  `${it.name} (${it.weight}) — ₹${it.stallPrice}` +
+                  (it.stallStock === 0 ? " · out of stall stock" : "")
+              )
+              .join("<br/>");
+            const label =
+              p.diff < 0.01 ? "Exact match" : `Closest · Δ ₹${p.diff} · total ₹${p.total}`;
+            return `<div class="pack"><strong>${label}</strong><div class="meta">${lines}</div></div>`;
+          })
+          .join("");
+      }
+
+      document.getElementById("find").addEventListener("click", render);
+      document.getElementById("target").addEventListener("keydown", (e) => {
+        if (e.key === "Enter") render();
+      });
+
+      document.querySelectorAll("[data-copy]").forEach((btn) => {
+        btn.addEventListener("click", async () => {
+          const text = btn.parentElement.querySelector("code").textContent;
+          try {
+            await navigator.clipboard.writeText(text);
+            btn.textContent = "Copied";
+            setTimeout(() => (btn.textContent = "Copy"), 1200);
+          } catch {
+            btn.textContent = "Select & copy";
+          }
+        });
+      });
+
+      render();
+    </script>
   </body>
 </html>
