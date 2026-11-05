@@ -1,60 +1,86 @@
 # angika-switch-ops
 
-**Angika ops teammates in chat**, powered by **[Switch](https://github.com/sandbox-quantum/switch)**.
+**Angika ops teammates in Telegram**, powered by **[Switch](https://github.com/sandbox-quantum/switch)**.
 
-Humans and AI agents share one Telegram room (`#angika-ops`). Agents use live **UAT tools** (or mock) for stall prices, health, and orders. Risky actions wait for **human approval**.
+Floor staff and AI agents (Ops, Catalog, Release) share one room for stall pricing, UAT health, and rollback proposals. Risky actions need **admin Approve / Reject**.
 
-> Switch does **not** ship a model — it starts an agent provider you already use (Cursor recommended).
+## Demo video
+
+> **Add your recording link here** (2–3 min): `https://…`  
+> Follow [docs/DEMO.md](docs/DEMO.md) so the video matches what reviewers expect.
+
+## Why Switch is required (not optional)
+
+| With Switch | Without Switch |
+|-------------|----------------|
+| Telegram group becomes a shared **room** with Rules | No room, no shared agent context |
+| Cursor agents join as named teammates | Agents stay in a local IDE only |
+| Humans + agents + handoffs in one thread | Copy-paste between tools |
+| Trust rules (who may instruct; admin-only Approve) | No shared approval trail |
+
+**If you remove Switch, this project stops working as designed** — the chat bridge, room Rules, and agent sessions disappear.
 
 ## Stack
 
 | Layer | Choice |
 |--------|--------|
-| Bridge | Switch Rooms |
+| Bridge | **Switch Rooms** (mandatory) |
 | Chat | Telegram |
-| Agents | Cursor — Ops / Catalog / Release (aliases `ops`, `cat`, `rel`) |
-| Data | `node tools/angika.mjs` → mock or UAT admin API |
+| Agents | Cursor — `ops.rohit`, `catalog.rohit`, `release.rohit` |
+| Data | `node tools/angika.mjs` → **mock** (default) or **UAT** |
 
-## Quick start
+## Reproduce in ~10 minutes
 
-1. Install [Switch Console](https://docs.switchagents.ai/switch-rooms/getting-started); sign in **Cursor** under Agent providers.
-2. Connect [Telegram](https://docs.switchagents.ai/switch-rooms/deploy/messaging-apps/telegram); use room `#angika-ops`.
-3. Onboard agents from `agents/*.md` with **Directory** = this repo. Set short aliases `ops`, `cat`, `rel` if Switch offers them.
-4. Paste [rooms/angika-ops/RULES.md](rooms/angika-ops/RULES.md) into room Rules.
-5. Copy `.env.example` → `.env`. Start with `ANGIKA_TOOLS_MODE=mock`, then switch to `uat` + `ANGIKA_API_TOKEN` for live stall data (see [tools/README.md](tools/README.md)).
-6. Open [web/index.html](web/index.html) for the website-reuse story.
-7. Follow [docs/TESTING.md](docs/TESTING.md) for every scenario.
+```bash
+git clone https://github.com/organic-tech/angika-switch-ops.git
+cd angika-switch-ops
+cp .env.example .env          # ANGIKA_TOOLS_MODE=mock
+chmod +x scripts/smoke.sh
+./scripts/smoke.sh            # must print "smoke passed"
+open web/index.html           # website-reuse stub
+```
+
+Then (Switch + Telegram — required for the full product):
+
+1. Install [Switch Console](https://docs.switchagents.ai/switch-rooms/getting-started); **Settings → Agent providers → Cursor** signed in.  
+2. Connect [Telegram](https://docs.switchagents.ai/switch-rooms/deploy/messaging-apps/telegram); group `angika_ops` + bot.  
+3. Onboard agents from `agents/*.md` (**Directory** = this repo).  
+4. Paste `rooms/angika-ops/RULES.md` into room Instructions.  
+5. Run the live script in [docs/DEMO.md](docs/DEMO.md).
+
+Live stall prices (optional): set `ANGIKA_TOOLS_MODE=uat` and `ANGIKA_API_TOKEN` (admin JWT, ~1 hour). See [tools/README.md](tools/README.md).
+
+## What it does
+
+- **Catalog** — stall combos near a ₹ target (`stall-combo`)  
+- **Ops** — UAT `health` / `order-status`, then hands off to Release  
+- **Release** — `propose-rollback` only; non-admin Approve/Reject → tags owner + **Admin permission required**  
+- **web/** — same collaboration story for a future website entry point  
 
 ## Tools
 
 ```bash
-node tools/angika.mjs health
-node tools/angika.mjs stall-list
+./scripts/smoke.sh
 node tools/angika.mjs stall-combo --target 329
 node tools/angika.mjs propose-rollback
-node tools/angika.mjs order-status --q <phoneOrOrder>
 ```
 
-Shopper `/api/products` hides stall prices — UAT mode uses **admin** `/api/admin/products` with a Bearer token.
+## Docs
 
-## Repo layout
-
-```
-agents/          # paste into Switch agent instructions
-rooms/angika-ops/RULES.md
-tools/angika.mjs # mock + UAT CLI
-tools/mock/      # offline stall sample
-web/index.html   # website entry stub
-docs/TESTING.md
-docs/AGENTS.md
-docs/ARCHITECTURE.md
-```
+| Doc | Purpose |
+|-----|---------|
+| [docs/DEMO.md](docs/DEMO.md) | What to record in the demo video |
+| [docs/TESTING.md](docs/TESTING.md) | CLI + Telegram scenarios |
+| [docs/AGENTS.md](docs/AGENTS.md) | Providers (Cursor, etc.) |
+| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | How pieces connect |
+| [rooms/angika-ops/RULES.md](rooms/angika-ops/RULES.md) | Paste into Switch room |
 
 ## Security
 
-- UAT or mock only in this project.
-- Never commit `.env` / tokens.
-- No writes without **Approved** in the room.
+- Default demo uses **mock** (no secrets).  
+- Never commit `.env` / tokens.  
+- UAT token is short-lived (~1 hour); refresh from admin login when needed.  
+- No deploy/write without **admin** **Approved**.
 
 ## License
 

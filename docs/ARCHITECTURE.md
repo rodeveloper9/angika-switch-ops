@@ -1,5 +1,7 @@
 # Architecture
 
+**Switch is the centre.** Telegram, Cursor agents, and Angika tools do not form a product without it.
+
 ## Layers
 
 ```
@@ -8,20 +10,22 @@ Telegram (humans)
         ▼
 ┌───────────────────────────┐
 │  Switch Rooms (mandatory) │
-│  room · rules · tasks     │
+│  room · rules · trust     │
 │  messaging + providers    │
-└─────────────┬─────────────┘|
+└─────────────┬─────────────┘
               │ starts
               ▼
-   Cursor / OpenCode / … agents
+   Cursor agents
    (Ops · Catalog · Release)
               │
               ▼
-   Angika tools (UAT or mock)
+   tools/angika.mjs (mock or UAT)
               │
               ▼
-   Human approval → safe action
+   Admin Approve / Reject → safe action
 ```
+
+Remove Switch → no room, no agent sessions in chat, no shared Rules/trust.
 
 ## Message path
 
