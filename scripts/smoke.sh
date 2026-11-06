@@ -24,7 +24,7 @@ const combo = JSON.parse(fs.readFileSync("/tmp/angika-smoke-combo.json","utf8"))
 if (combo.priceType !== "online") { console.error("FAIL expected online prices"); process.exit(1); }
 const best = combo.exact?.[0] || combo.closest?.[0];
 if (!best) { console.error("FAIL combo empty"); process.exit(1); }
-console.log("smoke passed — online combo for 329:", best.total, "INR", best.diff === 0 ? "(exact)" : "(Δ "+best.diff+")");
+console.log("smoke passed — online combo for 329:", best.total, "INR", "(Δ "+best.diff+")");
 '
 
 echo "==> open web stub: open web/index.html"

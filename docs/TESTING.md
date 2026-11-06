@@ -20,7 +20,7 @@ node tools/angika.mjs propose-rollback
 node tools/angika.mjs order-status --q test
 ```
 
-Expect `"ok": true` and `priceType: "online"`. ₹329 often **exact** (Moringa 100gm + Sattu 500gm).
+Expect `"ok": true` and `priceType: "online"`. Closest to ₹329 should match current catalogue (e.g. Tulsi Honey ₹320).
 
 ### Live UAT
 
@@ -39,7 +39,7 @@ Agent **Directory** = this repo. Prefer full names if aliases are unset.
 
 | # | You send | Pass if |
 |---|----------|---------|
-| 1 | `catalog.rohit What online pack is closest to 329? Use catalog-combo.` | Online prices; often exact ₹329 |
+| 1 | `catalog.rohit What online pack is closest to 329? Use catalog-combo.` | Online prices; verifiable on /products |
 | 2 | `ops.rohit Check UAT/mock health with the tool.` | Summarizes health |
 | 3 | `ops.rohit … then ask release.rohit for a UAT rollback proposal.` | Handoff → proposal |
 | 4 | Teammate: `Rejected` | Tags owner + Admin permission required |

@@ -1,40 +1,147 @@
 {
   "currency": "INR",
-  "note": "Public online offer prices (shopper-visible). Cross-check on the Angika storefront / UAT site.",
+  "note": "Snapshot of public online offer prices from UAT for mock mode. Prefer ANGIKA_TOOLS_MODE=uat for live verify.",
   "verifyUrl": "https://uat.angikafoods.com/products",
   "variants": [
-    { "name": "Flowers", "weight": "100gm", "onlinePrice": 25, "mrp": 25, "stock": 8 },
-    { "name": "Flowers", "weight": "150gm", "onlinePrice": 35, "mrp": 35, "stock": 10 },
-    { "name": "Flowers", "weight": "250gm", "onlinePrice": 45, "mrp": 45, "stock": 10 },
-    { "name": "Katarni Chuda / Poha", "weight": "500gm", "onlinePrice": 149, "mrp": 200, "stock": 8 },
-    { "name": "Sattu", "weight": "500gm", "onlinePrice": 149, "mrp": 185, "stock": 9 },
-    { "name": "Moringa Powder", "weight": "100gm", "onlinePrice": 180, "mrp": 200, "stock": 9 },
-    { "name": "Katarni Chuda / Poha", "weight": "1kg", "onlinePrice": 249, "mrp": 399, "stock": 10 },
-    { "name": "Sattu", "weight": "1kg", "onlinePrice": 249, "mrp": 325, "stock": 9 },
-    { "name": "Buffalo Ghee", "weight": "250ml", "onlinePrice": 299, "mrp": 320, "stock": 10 },
-    { "name": "Mango Pickle", "weight": "250gm", "onlinePrice": 299, "mrp": 350, "stock": 11 },
-    { "name": "Ajwain Honey", "weight": "250gm", "onlinePrice": 299, "mrp": 420, "stock": 14 },
-    { "name": "Moringa Powder", "weight": "250gm", "onlinePrice": 299, "mrp": 370, "stock": 10 },
-    { "name": "OL | Suran | Jimikand Pickle", "weight": "250gm", "onlinePrice": 299, "mrp": 350, "stock": 13 },
-    { "name": "Multiflora Honey", "weight": "250gm", "onlinePrice": 299, "mrp": 420, "stock": 31 },
-    { "name": "Tulsi Honey", "weight": "250gm", "onlinePrice": 320, "mrp": 425, "stock": 20 },
-    { "name": "Cow Ghee", "weight": "250ml", "onlinePrice": 399, "mrp": 420, "stock": 10 },
-    { "name": "Mango Pickle", "weight": "500gm", "onlinePrice": 499, "mrp": 599, "stock": 9 },
-    { "name": "Ajwain Honey", "weight": "500gm", "onlinePrice": 499, "mrp": 749, "stock": 22 },
-    { "name": "OL | Suran | Jimikand Pickle", "weight": "500gm", "onlinePrice": 499, "mrp": 599, "stock": 11 },
-    { "name": "Multiflora Honey", "weight": "500gm", "onlinePrice": 499, "mrp": 749, "stock": 6 },
-    { "name": "Tulsi Honey", "weight": "500gm", "onlinePrice": 549, "mrp": 849, "stock": 23 },
-    { "name": "Buffalo Ghee", "weight": "500ml", "onlinePrice": 549, "mrp": 600, "stock": 8 },
-    { "name": "Cow Ghee", "weight": "500ml", "onlinePrice": 749, "mrp": 800, "stock": 8 }
-  ],
-  "comboHints": [
     {
-      "target": 329,
-      "exact": true,
-      "items": [
-        { "name": "Moringa Powder", "weight": "100gm", "onlinePrice": 180 },
-        { "name": "Sattu", "weight": "500gm", "onlinePrice": 149 }
-      ]
+      "name": "Moringa Powder",
+      "weight": "100gm",
+      "onlinePrice": 180,
+      "mrp": 200,
+      "stock": 9
+    },
+    {
+      "name": "Sattu",
+      "weight": "500gm",
+      "onlinePrice": 220,
+      "mrp": 240,
+      "stock": 8
+    },
+    {
+      "name": "Katarni Chuda / Poha",
+      "weight": "500gm",
+      "onlinePrice": 225,
+      "mrp": 250,
+      "stock": 7
+    },
+    {
+      "name": "Ajwain Honey",
+      "weight": "250gm",
+      "onlinePrice": 299,
+      "mrp": 420,
+      "stock": 13
+    },
+    {
+      "name": "Buffalo Ghee",
+      "weight": "250ml",
+      "onlinePrice": 299,
+      "mrp": 320,
+      "stock": 10
+    },
+    {
+      "name": "Mango Pickle",
+      "weight": "250gm",
+      "onlinePrice": 299,
+      "mrp": 350,
+      "stock": 11
+    },
+    {
+      "name": "Moringa Powder",
+      "weight": "250gm",
+      "onlinePrice": 299,
+      "mrp": 370,
+      "stock": 10
+    },
+    {
+      "name": "Multiflora Honey",
+      "weight": "250gm",
+      "onlinePrice": 299,
+      "mrp": 420,
+      "stock": 31
+    },
+    {
+      "name": "OL | Suran | Jimikand Pickle",
+      "weight": "250gm",
+      "onlinePrice": 299,
+      "mrp": 350,
+      "stock": 12
+    },
+    {
+      "name": "Tulsi Honey",
+      "weight": "250gm",
+      "onlinePrice": 320,
+      "mrp": 425,
+      "stock": 20
+    },
+    {
+      "name": "Sattu",
+      "weight": "1kg",
+      "onlinePrice": 349,
+      "mrp": 390,
+      "stock": 9
+    },
+    {
+      "name": "Cow Ghee",
+      "weight": "250ml",
+      "onlinePrice": 399,
+      "mrp": 420,
+      "stock": 10
+    },
+    {
+      "name": "Katarni Chuda / Poha",
+      "weight": "1kg",
+      "onlinePrice": 399,
+      "mrp": 450,
+      "stock": 5
+    },
+    {
+      "name": "Ajwain Honey",
+      "weight": "500gm",
+      "onlinePrice": 499,
+      "mrp": 749,
+      "stock": 22
+    },
+    {
+      "name": "Mango Pickle",
+      "weight": "500gm",
+      "onlinePrice": 499,
+      "mrp": 599,
+      "stock": 9
+    },
+    {
+      "name": "Multiflora Honey",
+      "weight": "500gm",
+      "onlinePrice": 499,
+      "mrp": 749,
+      "stock": 6
+    },
+    {
+      "name": "OL | Suran | Jimikand Pickle",
+      "weight": "500gm",
+      "onlinePrice": 499,
+      "mrp": 599,
+      "stock": 11
+    },
+    {
+      "name": "Buffalo Ghee",
+      "weight": "500ml",
+      "onlinePrice": 549,
+      "mrp": 600,
+      "stock": 7
+    },
+    {
+      "name": "Tulsi Honey",
+      "weight": "500gm",
+      "onlinePrice": 549,
+      "mrp": 849,
+      "stock": 23
+    },
+    {
+      "name": "Cow Ghee",
+      "weight": "500ml",
+      "onlinePrice": 749,
+      "mrp": 800,
+      "stock": 8
     }
   ]
 }

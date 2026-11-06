@@ -19,7 +19,7 @@ Record **2–3 minutes**. Say Switch by name in the first 15 seconds.
 catalog.rohit What online pack is closest to 329? Use catalog-combo — website offer prices only.
 ```
 
-Show the tool-backed answer (often **exact ₹329**: Moringa 100gm ₹180 + Sattu 500gm ₹149). Tell viewers they can verify on the products page.
+Show the tool-backed **online** answer (e.g. closest may be Tulsi Honey 250gm ₹320). Tell viewers to verify the same offer price on https://uat.angikafoods.com/products.
 
 ### Beat 2 — Multi-agent handoff (Switch diagram)
 
