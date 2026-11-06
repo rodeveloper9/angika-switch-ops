@@ -31,10 +31,10 @@ Use one provider (e.g. Cursor) and register **three agents** with different inst
 | Agent | Alias | File | Job |
 |-------|-------|------|-----|
 | Ops | `ops` | [agents/ops.md](../agents/ops.md) | Health / orders via `node tools/angika.mjs` |
-| Catalog | `cat` | [agents/catalog.md](../agents/catalog.md) | Stall prices & combos via tools |
+| Catalog | `cat` | [agents/catalog.md](../agents/catalog.md) | Online offer prices & combos (`catalog-*`) |
 | Release | `rel` | [agents/release.md](../agents/release.md) | Propose rollback only — wait for **Approved** |
 
-Agents must run tools from this repo directory — never invent stall prices.
+Agents must run tools from this repo directory — never invent prices. Catalog = website-visible online prices only.
 
 ## Setup steps (Cursor)
 

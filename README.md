@@ -2,7 +2,7 @@
 
 **Angika ops teammates in Telegram**, powered by **[Switch](https://github.com/sandbox-quantum/switch)**.
 
-Floor staff and AI agents (Ops, Catalog, Release) share one room for stall pricing, UAT health, and rollback proposals. Risky actions need **admin Approve / Reject**.
+Floor staff and AI agents (Ops, Catalog, Release) share one room for **online catalogue** pricing, UAT health, and rollback proposals. Risky actions need **admin Approve / Reject**.
 
 ## Demo video
 
@@ -48,11 +48,11 @@ Then (Switch + Telegram — required for the full product):
 4. Paste `rooms/angika-ops/RULES.md` into room Instructions.  
 5. Run the live script in [docs/DEMO.md](docs/DEMO.md).
 
-Live stall prices (optional): set `ANGIKA_TOOLS_MODE=uat` and `ANGIKA_API_TOKEN` (admin JWT, ~1 hour). See [tools/README.md](tools/README.md).
+Live catalogue (optional): set `ANGIKA_TOOLS_MODE=uat` — **catalog tools use the public API (no token)**. `order-status` still needs `ANGIKA_API_TOKEN`. See [tools/README.md](tools/README.md).
 
 ## What it does
 
-- **Catalog** — stall combos near a ₹ target (`stall-combo`)  
+- **Catalog** — online offer-price combos near a ₹ target (`catalog-combo`) — verifiable on the website  
 - **Ops** — UAT `health` / `order-status`, then hands off to Release  
 - **Release** — `propose-rollback` only; non-admin Approve/Reject → tags owner + **Admin permission required**  
 - **web/** — same collaboration story for a future website entry point  
@@ -61,7 +61,7 @@ Live stall prices (optional): set `ANGIKA_TOOLS_MODE=uat` and `ANGIKA_API_TOKEN`
 
 ```bash
 ./scripts/smoke.sh
-node tools/angika.mjs stall-combo --target 329
+node tools/angika.mjs catalog-combo --target 329
 node tools/angika.mjs propose-rollback
 ```
 

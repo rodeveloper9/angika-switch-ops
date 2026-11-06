@@ -15,13 +15,13 @@ node tools/angika.mjs health
 node tools/angika.mjs order-status --q <orderOrPhone>
 ```
 
-For stall questions, hand off to Catalog (`cat`) instead of guessing.
+For product / online-price questions, hand off to Catalog (`cat`) instead of guessing.
 
 ## You can
 
 - Summarize likely cause in plain language
 - Ask `rel` / Release for a rollback **proposal** after you have evidence
-- Ask `cat` / Catalog for product/stall questions
+- Ask `cat` / Catalog for product / online-price questions
 
 ## You must not
 

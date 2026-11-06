@@ -254,16 +254,6 @@
       .tl + .tl .rail {
         position: relative;
       }
-      .tl .rail::before {
-        content: "";
-        position: absolute;
-        left: 50%;
-        top: -100%;
-        bottom: 50%;
-        width: 2px;
-        transform: translateX(-50%);
-        background: var(--line);
-      }
       .tl p {
         margin: 0 0 16px;
         color: var(--muted);
@@ -300,7 +290,7 @@
       </p>
 
       <div class="pill-row">
-        <span class="pill">Stall combos · ₹ targets</span>
+        <span class="pill">Online price combos · ₹ targets</span>
         <span class="pill">UAT health &amp; orders</span>
         <span class="pill">Rollback proposals</span>
         <span class="pill">Admin gate</span>
@@ -318,7 +308,7 @@
           <article class="agent">
             <div class="alias">cat · catalog.rohit</div>
             <h3>Catalog</h3>
-            <p>Reads stall prices and builds packs near a ₹ target (e.g. customer wants ~329).</p>
+            <p>Reads <strong>online offer prices</strong> (website-visible) and builds packs near a ₹ target (e.g. ~329).</p>
           </article>
           <article class="agent">
             <div class="alias">rel · release.rohit</div>
@@ -329,10 +319,10 @@
       </section>
 
       <section>
-        <h2>Try a stall combo (same logic as the agent tool)</h2>
+        <h2>Try an online-price combo (same logic as the agent tool)</h2>
         <p class="sub">
-          Uses the repo mock catalogue in-browser. In Telegram, Catalog runs
-          <code>node tools/angika.mjs stall-combo</code> against mock or live UAT.
+          Uses public <strong>offer prices</strong> (cross-check on the storefront). In Telegram, Catalog runs
+          <code>node tools/angika.mjs catalog-combo</code> — not internal stall prices.
         </p>
         <div class="tool">
           <div class="tool-bar">
@@ -343,7 +333,7 @@
             <button type="button" id="find">Find closest packs</button>
           </div>
           <div class="result" id="out">Pick a target and run Find — e.g. 329.</div>
-          <p class="note">Exact ₹329 is often impossible; agents explain the closest pack (often ₹328 honey).</p>
+          <p class="note">Example: ₹329 can be exact — Moringa 100gm (₹180) + Sattu 500gm (₹149). Verify on the products page.</p>
         </div>
       </section>
 
@@ -352,7 +342,7 @@
         <p class="sub">Paste these into #angika_ops after agents are invited.</p>
         <div class="cmds">
           <div class="cmd">
-            <code>catalog.rohit What stall pack is closest to 329? Use the angika tool.</code>
+            <code>catalog.rohit What online pack is closest to 329? Use catalog-combo — website offer prices only.</code>
             <button type="button" data-copy>Copy</button>
           </div>
           <div class="cmd">
@@ -434,20 +424,22 @@
 
     <script>
       const VARIANTS = [
-        { name: "Moringa Powder", weight: "100gm", stallPrice: 99, stallStock: 4 },
-        { name: "Sattu", weight: "500gm", stallPrice: 119, stallStock: 5 },
-        { name: "Katarni Chuda / Poha", weight: "500gm", stallPrice: 125, stallStock: 4 },
-        { name: "Multiflora Honey", weight: "250gm", stallPrice: 149, stallStock: 8 },
-        { name: "Ajwain Honey", weight: "250gm", stallPrice: 179, stallStock: 8 },
-        { name: "Tulsi Honey", weight: "250gm", stallPrice: 179, stallStock: 0 },
-        { name: "Katarni Chuda / Poha", weight: "1kg", stallPrice: 199, stallStock: 10 },
-        { name: "Mango Pickle", weight: "250gm", stallPrice: 199, stallStock: 6 },
-        { name: "Moringa Powder", weight: "250gm", stallPrice: 199, stallStock: 10 },
-        { name: "OL | Suran | Jimikand Pickle", weight: "250gm", stallPrice: 199, stallStock: 6 },
-        { name: "Sattu", weight: "1kg", stallPrice: 219, stallStock: 10 },
-        { name: "Buffalo Ghee", weight: "250ml", stallPrice: 249, stallStock: 10 },
-        { name: "Multiflora Honey", weight: "500gm", stallPrice: 279, stallStock: 10 },
-        { name: "Cow Ghee", weight: "250ml", stallPrice: 299, stallStock: 9 },
+        { name: "Flowers", weight: "100gm", onlinePrice: 25, stock: 8 },
+        { name: "Flowers", weight: "150gm", onlinePrice: 35, stock: 10 },
+        { name: "Flowers", weight: "250gm", onlinePrice: 45, stock: 10 },
+        { name: "Katarni Chuda / Poha", weight: "500gm", onlinePrice: 149, stock: 8 },
+        { name: "Sattu", weight: "500gm", onlinePrice: 149, stock: 9 },
+        { name: "Moringa Powder", weight: "100gm", onlinePrice: 180, stock: 9 },
+        { name: "Katarni Chuda / Poha", weight: "1kg", onlinePrice: 249, stock: 10 },
+        { name: "Sattu", weight: "1kg", onlinePrice: 249, stock: 9 },
+        { name: "Buffalo Ghee", weight: "250ml", onlinePrice: 299, stock: 10 },
+        { name: "Mango Pickle", weight: "250gm", onlinePrice: 299, stock: 11 },
+        { name: "Ajwain Honey", weight: "250gm", onlinePrice: 299, stock: 14 },
+        { name: "Moringa Powder", weight: "250gm", onlinePrice: 299, stock: 10 },
+        { name: "OL | Suran | Jimikand Pickle", weight: "250gm", onlinePrice: 299, stock: 13 },
+        { name: "Multiflora Honey", weight: "250gm", onlinePrice: 299, stock: 31 },
+        { name: "Tulsi Honey", weight: "250gm", onlinePrice: 320, stock: 20 },
+        { name: "Cow Ghee", weight: "250ml", onlinePrice: 399, stock: 10 },
       ];
 
       function findCombos(target) {
@@ -455,10 +447,10 @@
         const n = VARIANTS.length;
         for (let i = 0; i < n; i++) {
           const a = VARIANTS[i];
-          near.push({ total: a.stallPrice, diff: Math.abs(a.stallPrice - target), items: [a] });
+          near.push({ total: a.onlinePrice, diff: Math.abs(a.onlinePrice - target), items: [a] });
           for (let j = i + 1; j < n; j++) {
             const b = VARIANTS[j];
-            const total = a.stallPrice + b.stallPrice;
+            const total = a.onlinePrice + b.onlinePrice;
             near.push({ total, diff: Math.abs(total - target), items: [a, b] });
           }
         }
@@ -488,12 +480,14 @@
             const lines = p.items
               .map(
                 (it) =>
-                  `${it.name} (${it.weight}) — ₹${it.stallPrice}` +
-                  (it.stallStock === 0 ? " · out of stall stock" : "")
+                  `${it.name} (${it.weight}) — ₹${it.onlinePrice} online` +
+                  (it.stock === 0 ? " · out of stock" : "")
               )
               .join("<br/>");
             const label =
-              p.diff < 0.01 ? "Exact match" : `Closest · Δ ₹${p.diff} · total ₹${p.total}`;
+              p.diff < 0.01
+                ? `Exact match · ₹${p.total} online`
+                : `Closest · Δ ₹${p.diff} · total ₹${p.total} online`;
             return `<div class="pack"><strong>${label}</strong><div class="meta">${lines}</div></div>`;
           })
           .join("");

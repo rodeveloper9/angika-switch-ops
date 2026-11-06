@@ -16,10 +16,10 @@ Record **2–3 minutes**. Say Switch by name in the first 15 seconds.
 ### Beat 1 — Catalog (real work)
 
 ```text
-catalog.rohit What stall pack is closest to 329? Use the angika tool.
+catalog.rohit What online pack is closest to 329? Use catalog-combo — website offer prices only.
 ```
 
-Show the tool-backed answer (₹328 honey pack or live UAT).
+Show the tool-backed answer (often **exact ₹329**: Moringa 100gm ₹180 + Sattu 500gm ₹149). Tell viewers they can verify on the products page.
 
 ### Beat 2 — Multi-agent handoff (Switch diagram)
 

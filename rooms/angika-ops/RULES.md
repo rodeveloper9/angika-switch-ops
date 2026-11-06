@@ -15,8 +15,8 @@ Coordinate Angika stall floor, checkout incidents, and UAT ops between humans an
 ## Behaviour
 
 1. Prefer live tools (`node tools/angika.mjs …`) over memory. Use UAT when configured; otherwise mock.
-2. Never invent stall prices, order status, or deploy history.
-3. Catalog may answer stall/price questions without approval.
+2. Never invent prices, order status, or deploy history. Catalog must use **online offer prices** (`catalog-list` / `catalog-combo`) — verifiable on the website — not internal stall prices.
+3. Catalog may answer product/price questions without approval.
 4. Ops may diagnose and summarize without approval.
 5. Release may **propose** rollback/deploy only via `propose-rollback`.
 6. **Approve / Reject are admin-only.**
