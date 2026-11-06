@@ -6,8 +6,9 @@ Floor staff and AI agents (Ops, Catalog, Release) share one room for **online ca
 
 ## Demo video
 
-> **Add your recording link here** (2–3 min): `https://…`  
-> Follow [docs/DEMO.md](docs/DEMO.md) so the video matches what reviewers expect.
+**Watch:** [https://www.youtube.com/watch?v=k1gaMo8v6J8](https://www.youtube.com/watch?v=k1gaMo8v6J8)
+
+Walkthrough script: [docs/DEMO.md](docs/DEMO.md).
 
 ## Why Switch is required (not optional)
 
