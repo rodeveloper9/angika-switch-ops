@@ -32,7 +32,7 @@ Floor staff and AI agents (Ops, Catalog, Release) share one room for **online ca
 ## Reproduce in ~10 minutes
 
 ```bash
-git clone https://github.com/organic-tech/angika-switch-ops.git
+git clone https://github.com/rodeveloper9/angika-switch-ops.git
 cd angika-switch-ops
 cp .env.example .env          # ANGIKA_TOOLS_MODE=mock
 chmod +x scripts/smoke.sh
